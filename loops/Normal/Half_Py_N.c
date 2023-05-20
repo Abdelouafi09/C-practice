@@ -5,15 +5,24 @@
  */
 int main(void)
 {
-	int row, col, size;
+	int row, col, size, i;
+	char c;
 
-	printf("Enter the size of your pyramid: ");
-	scanf("%d", &size);
+	do{
+
+		printf("Enter the size of your pyramid: ");
+		i = scanf("%d", &size);
+		if (i != 1)
+		{
+			while ((c = getchar()) != '\n' && c != EOF)
+				continue;
+		}
+	}while (i != 1);
 	for (row = 1; row <= size; row++)
 	{
 		for (col = 1; col <= row; col++)
 		{
-			if (col == 0)
+			if (col == 1)
 				printf("%d", col);
 			else
 				printf(" %d", col);
