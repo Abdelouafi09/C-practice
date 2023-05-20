@@ -1,30 +1,33 @@
 #include <stdio.h>
+
 /**
  * main - entry point
- * Return: return 0
+ * Return: 0
  */
 int main(void)
 {
-	int i, j, size, v = 0;
+	int row, col, input, valid = 0;
 	char c;
 
-	while (v != 1)
+	while (valid != 1)
 	{
 		printf("Enter the size of your pyramid:\n");
-		v = scanf("%d", &size);
+		valid = scanf("%d", &input);
 		while ((c = getchar()) != '\n' && c != EOF)
 			continue;
 	}
-	for (i = 0; i < size; i++)
+	valid = input;
+	for (row = 1; row <= input; row++)
 	{
-		for (j = 0; j <= i; j++)
+		for (col = valid; col >= 1; col--)
 		{
-			if (j == 0)
+			if (col == valid)
 				printf("*");
 			else
 				printf(" *");
 		}
 		printf("\n");
+		valid--;
 	}
 	return (0);
 }
