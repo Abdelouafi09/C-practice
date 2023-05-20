@@ -5,10 +5,19 @@
  */
 int main(void)
 {
-	int i, j, size;
+	int i, j, size, v = 0;
+	char c;
 
+	while (v != 1)
+	{
 	printf("Enter the size of your pyramid:\n");
-	scanf("%d", &size);
+	v = scanf("%d", &size);
+	if (v != 1)
+	{
+		while ((c = getchar()) != '\n' && c != EOF)
+			continue;
+	}
+	}
 	for (i = 0; i < size; i++)
 	{
 		for (j = 0; j <= i; j++)
