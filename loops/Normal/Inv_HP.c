@@ -16,18 +16,17 @@ int main(void)
 		while ((c = getchar()) != '\n' && c != EOF)
 			continue;
 	}
-	valid = input;
-	for (row = 1; row <= input; row++)
+
+	for (row = input; row >= 1; row--)
 	{
-		for (col = valid; col >= 1; col--)
+		for (col = 1; col <= row; col++)
 		{
-			if (col == valid)
+			if (col == 1)
 				printf("*");
 			else
 				printf(" *");
 		}
 		printf("\n");
-		valid--;
 	}
 	return (0);
 }
