@@ -1,11 +1,11 @@
 #include <stdio.h>
 /**
- * main - Entry point
+ * main - Entry point inverted pyramid
  * Return: 0
  */
 int main(void)
 {
-	int row, col, valid, input;
+	int row, col, valid, input, space;
 	char c;
 
 	valid = 0;
@@ -16,5 +16,21 @@ int main(void)
 		while ((c = getchar()) != '\n' && c != EOF)
 			continue;
 	}
+	for (row = input; row >= 1; row--)
+	{
+		for (space = (input - row); space >= 1; space--)
+		{
+			printf("  ");
+		}
+		for (col = ((2 * row) - 1); col >= 1; col--)
+		{
+			if (col == ((2 * row) - 1))
+				printf("*");
+			else
+				printf(" *");
+		}
+		printf("\n");
+	}
+	return (0);
 
 }
