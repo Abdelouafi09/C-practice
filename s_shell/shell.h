@@ -97,6 +97,8 @@ int _errputchar(char c);
 void rmv_cmt(char *buff);
 int _erratoi(char *s);
 void print_err(inf *, char *);
+int put_fd(char c, int fd);
+
 
 /*############################################################################*/
 
@@ -104,7 +106,7 @@ void print_err(inf *, char *);
 /* toem_errors.c */
 
 
-int _putfd(char c, int fd);
+
 int _putsfd(char *str, int fd);
 
 
