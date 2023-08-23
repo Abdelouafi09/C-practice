@@ -43,20 +43,19 @@ void _errputs(char *s)
 	}
 }
 
-/*#######################*/
 
 /**
- * _putfd - writes the character c to given fd
- * @c: The character to print
- * @fd: The filedescriptor to write to
+ * put_fd - writes char c to fd
+ * @c: char to print
+ * @fd: filedescriptor to write to
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: Always 1.
+ * 
  */
-int _putfd(char c, int fd)
+int put_fd(char c, int fd)
 {
-	static int i;
 	static char buf[WR_BUF_SIZE];
+	static int i;
 
 	if (c == BUF_FH || i >= WR_BUF_SIZE)
 	{
@@ -64,9 +63,17 @@ int _putfd(char c, int fd)
 		i = 0;
 	}
 	if (c != BUF_FH)
+	{
 		buf[i++] = c;
+	}
+
 	return (1);
 }
+
+
+/*#######################*/
+
+
 
 /**
  *_putsfd - prints an input string
@@ -83,7 +90,7 @@ int _putsfd(char *str, int fd)
 		return (0);
 	while (*str)
 	{
-		i += _putfd(*str++, fd);
+		i += put_fd(*str++, fd);
 	}
 	return (i);
 }
