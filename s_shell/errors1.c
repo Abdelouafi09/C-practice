@@ -12,7 +12,7 @@ int _erratoi(char *s)
 	int i = 0;
 
 	if (*s == '+')
-		s++;  
+		s++;
 	for (i = 0;  s[i] != '\0'; i++)
 	{
 		if (s[i] >= '0' && s[i] <= '9')
@@ -108,7 +108,7 @@ int print_dec(int input, int fd)
  * print_err - prints error msg
  * @info: info struct
  * @estr: str (error type)
- * 
+ *
  */
 void print_err(inf *info, char *estr)
 {
