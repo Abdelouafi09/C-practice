@@ -100,17 +100,14 @@ int _errputchar(char c);
 void rmv_cmt(char *buff);
 int _erratoi(char *s);
 void print_err(inf *, char *);
+char *cnvrt_num(long int, int, int);
+
+
+/* for cnvrt_num() */
+#define CNVRT_LOWERCASE	1
+#define CNVRT_UNSIGNED	2
 
 /*############################################################################*/
-
-/* toem_errors1.c */
-
-
-
-char *convert_number(long int, int, int);
-
-
-
 
 /* for command chaining */
 #define CMD_NORM	0
@@ -118,9 +115,7 @@ char *convert_number(long int, int, int);
 #define CMD_AND		2
 #define CMD_CHAIN	3
 
-/* for convert_number() */
-#define CONVERT_LOWERCASE	1
-#define CONVERT_UNSIGNED	2
+
 
 /* 1 if using system getline() */
 #define USE_GETLINE 0

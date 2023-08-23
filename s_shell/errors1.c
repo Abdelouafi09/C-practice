@@ -1,11 +1,10 @@
 #include "shell.h"
 
-
 /**
  * _erratoi - s ==> int
  * @s: string to convert
  * Return: 0 if no num in str, converted num, -1 on error
- * 
+ *
  */
 int _erratoi(char *s)
 {
@@ -28,6 +27,43 @@ int _erratoi(char *s)
 	}
 	return (rslt);
 }
+
+/**
+ * cnvrt_num - converter function, a clone of itoa
+ * @num: number
+ * @base: base
+ * @flags: argument flags
+ *
+ * Return: string pointer
+ */
+char *cnvrt_num(long int num, int base, int flags)
+{
+	static char *arr;
+	static char buf[50];
+	char sign = 0;
+	char *ptr;
+	unsigned long n = num;
+
+	if (!(flags & CNVRT_UNSIGNED) && num < 0)
+	{
+		n = -num;
+		sign = '-';
+
+	}
+	arr = flags & CNVRT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	ptr = &buf[49];
+	*ptr = '\0';
+
+	do	{
+		*--ptr = arr[n % base];
+		n /= base;
+	} while (n != 0);
+
+	if (sign)
+		*--ptr = sign;
+	return (ptr);
+}
+
 
 /**
  * print_dec - function prints a decimal (integer) number (base 10)
@@ -101,49 +137,3 @@ void rmv_cmt(char *buff)
 			break;
 		}
 }
-
-
-/*##########################*/
-
-
-
-
-
-
-/**
- * convert_number - converter function, a clone of itoa
- * @num: number
- * @base: base
- * @flags: argument flags
- *
- * Return: string
- */
-char *convert_number(long int num, int base, int flags)
-{
-	static char *array;
-	static char buffer[50];
-	char sign = 0;
-	char *ptr;
-	unsigned long n = num;
-
-	if (!(flags & CONVERT_UNSIGNED) && num < 0)
-	{
-		n = -num;
-		sign = '-';
-
-	}
-	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
-	ptr = &buffer[49];
-	*ptr = '\0';
-
-	do	{
-		*--ptr = array[n % base];
-		n /= base;
-	} while (n != 0);
-
-	if (sign)
-		*--ptr = sign;
-	return (ptr);
-}
-
-
