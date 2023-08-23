@@ -1,21 +1,20 @@
 #include "shell.h"
 
 /**
- * _strlen - returns the length of a string
- * @s: the string whose length to check
- *
- * Return: integer length of string
+ * _strlen - display length
+ * @s: char to operate on
+ * Return: return an int
  */
 int _strlen(char *s)
 {
-	int i = 0;
+	int len = 0;
 
-	if (!s)
-		return (0);
-
-	while (*s++)
-		i++;
-	return (i);
+	while (*s != '\0')
+	{
+		len++;
+		s++;
+	}
+	return (len);
 }
 
 /**
