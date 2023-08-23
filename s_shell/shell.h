@@ -14,6 +14,12 @@
 
 extern char **environ;
 
+
+#define ASM(fd) (asm ("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r" (fd)
+		: "r" (fd)))
+
 #define INF_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
@@ -21,16 +27,16 @@ extern char **environ;
 
 
 /**
- * struct liststr - singly linked list
- * @num: the number field
- * @str: a string
- * @next: points to the next node
+ * struct str_list - singly linked list
+ * @num: number field
+ * @str: string
+ * @next: points to next item
  */
-typedef struct liststr
+typedef struct str_list
 {
 	int num;
 	char *str;
-	struct liststr *next;
+	struct str_list *next;
 } list_t;
 
 /**
