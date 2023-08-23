@@ -18,10 +18,29 @@ extern char **environ;
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 
+/* 1 if using system getline() */
+#define USE_GETLINE 0
+#define USE_STRTOK 0
+
+#define HIST_FILE	".simple_shell_history"
+#define HIST_MAX	4096
+
 /*RD/WR buffer*/
 #define WR_BUF_SIZE 1024
 #define RD_BUF_SIZE 1024
 #define BUF_FH -1
+
+
+/* cmd chaining */
+#define CMD_NORM	0
+#define CMD_OR		1
+#define CMD_AND		2
+#define CMD_CHAIN	3
+
+
+/* for cnvrt_num() */
+#define CNVRT_LOWERCASE	1
+#define CNVRT_UNSIGNED	2
 
 /**
  * struct str_list - singly linked list
@@ -80,6 +99,20 @@ typedef struct arg_info
 	int hist_count;
 } inf;
 
+
+
+/**
+ *struct bltin - contains a builtin str and related function
+ *@type: the builtin cmd flg
+ *@func: the function
+ */
+typedef struct bltin
+{
+	char *type;
+	int (*func)(inf *);
+} bltin_t;
+
+
 /*string*/
 int _strlen(char *);
 int _putchar(char);
@@ -103,40 +136,11 @@ void print_err(inf *, char *);
 char *cnvrt_num(long int, int, int);
 
 
-/* for cnvrt_num() */
-#define CNVRT_LOWERCASE	1
-#define CNVRT_UNSIGNED	2
+
 
 /*############################################################################*/
 
-/* for command chaining */
-#define CMD_NORM	0
-#define CMD_OR		1
-#define CMD_AND		2
-#define CMD_CHAIN	3
 
-
-
-/* 1 if using system getline() */
-#define USE_GETLINE 0
-#define USE_STRTOK 0
-
-#define HIST_FILE	".simple_shell_history"
-#define HIST_MAX	4096
-
-
-
-
-/**
- *struct builtin - contains a builtin string and related function
- *@type: the builtin command flag
- *@func: the function
- */
-typedef struct builtin
-{
-	char *type;
-	int (*func)(inf *);
-} builtin_table;
 
 
 /* toem_shloop.c */

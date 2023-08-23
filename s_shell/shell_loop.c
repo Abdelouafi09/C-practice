@@ -1,5 +1,40 @@
 #include "shell.h"
 
+
+/**
+ * find_bltin - finds a builtin cmd
+ * @info: info struct
+ *
+ * Return: -1 ==> builtin not found, otherwise the builtin index
+ */
+int find_bltin(inf *info)
+{
+	int i, bltin_index = -1;
+	bltin_t bltin_tab[] = {
+		{"exit", _myexit},
+		{"env", _myenv},
+		{"help", _myhelp},
+		{"history", _myhistory},
+		{"setenv", _mysetenv},
+		{"unsetenv", _myunsetenv},
+		{"cd", _mycd},
+		{"alias", _myalias},
+		{NULL, NULL}
+	};
+
+	for (i = 0; bltin_tab[i].type; i++)
+		if (_strcmp(info->argv[0], bltin_tab[i].type) == 0)
+		{
+			info->line_count++;
+			bltin_index = bltin_tab[i].func(info);
+			break;
+		}
+	return (bltin_index);
+}
+
+/*#############################*/
+
+
 /**
  * hsh - main shell loop
  * @info: the parameter & return info struct
@@ -22,7 +57,7 @@ int hsh(inf *info, char **av)
 		if (r != -1)
 		{
 			set_info(info, av);
-			builtin_ret = find_builtin(info);
+			builtin_ret = find_bltin(info);
 			if (builtin_ret == -1)
 				find_cmd(info);
 		}
@@ -43,39 +78,7 @@ int hsh(inf *info, char **av)
 	return (builtin_ret);
 }
 
-/**
- * find_builtin - finds a builtin command
- * @info: the parameter & return info struct
- *
- * Return: -1 if builtin not found,
- *			0 if builtin executed successfully,
- *			1 if builtin found but not successful,
- *			-2 if builtin signals exit()
- */
-int find_builtin(inf *info)
-{
-	int i, built_in_ret = -1;
-	builtin_table builtintbl[] = {
-		{"exit", _myexit},
-		{"env", _myenv},
-		{"help", _myhelp},
-		{"history", _myhistory},
-		{"setenv", _mysetenv},
-		{"unsetenv", _myunsetenv},
-		{"cd", _mycd},
-		{"alias", _myalias},
-		{NULL, NULL}
-	};
 
-	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
-		{
-			info->line_count++;
-			built_in_ret = builtintbl[i].func(info);
-			break;
-		}
-	return (built_in_ret);
-}
 
 /**
  * find_cmd - finds a command in PATH
