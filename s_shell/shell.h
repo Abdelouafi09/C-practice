@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
-
+extern char **environ;
 
 #define INF_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
@@ -38,16 +38,16 @@ typedef struct liststr
  *
  *@arg: str arguements
  *@argv: array of str from arg
- *@cmd_path: path for the current command
  *@argc: arg count
+ *@cmd_path: path for the current command
  *@line_count: error count
- *@err_num: error index for exit functions
- *@linecount_flag: on count the input line
- *@fname: program filename
+ *@err_int: error index for exit functions
+ *@line_count_flag: on count the input line
+ *@file_name: program filename
  *@env: local copy of environ (linked list)
- *@environ: custom modified copy of environ from LL env
  *@history: history node
  *@alias: alias node
+ *@mod_environ: custom modified copy of environ from LL env
  *@env_changed: environ changed
  *@status: the return status of the last exec'd command
  *@cmd_buf: pointer to cmd_buf
@@ -62,13 +62,13 @@ typedef struct arg_info
 	char *cmd_path;
 	int argc;
 	unsigned int line_count;
-	int err_num;
-	int linecount_flag;
-	char *fname;
+	int err_int;
+	int line_count_flag;
+	char *file_name;
 	list_t *env;
 	list_t *history;
 	list_t *alias;
-	char **environ;
+	char **mod_environ;
 	int env_changed;
 	int status;
 	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
@@ -105,7 +105,7 @@ typedef struct arg_info
 #define HIST_FILE	".simple_shell_history"
 #define HIST_MAX	4096
 
-extern char **environ;
+
 
 
 /**

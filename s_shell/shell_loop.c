@@ -36,9 +36,9 @@ int hsh(inf *info, char **av)
 		exit(info->status);
 	if (builtin_ret == -2)
 	{
-		if (info->err_num == -1)
+		if (info->err_int == -1)
 			exit(info->status);
-		exit(info->err_num);
+		exit(info->err_int);
 	}
 	return (builtin_ret);
 }
@@ -89,10 +89,10 @@ void find_cmd(inf *info)
 	int i, k;
 
 	info->cmd_path = info->argv[0];
-	if (info->linecount_flag == 1)
+	if (info->line_count_flag == 1)
 	{
 		info->line_count++;
-		info->linecount_flag = 0;
+		info->line_count_flag = 0;
 	}
 	for (i = 0, k = 0; info->arg[i]; i++)
 		if (!is_delim(info->arg[i], " \t\n"))

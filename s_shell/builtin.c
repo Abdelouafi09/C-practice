@@ -22,10 +22,10 @@ int _myexit(inf *info)
 			_eputchar('\n');
 			return (1);
 		}
-		info->err_num = _erratoi(info->argv[1]);
+		info->err_int = _erratoi(info->argv[1]);
 		return (-2);
 	}
-	info->err_num = -1;
+	info->err_int = -1;
 	return (-2);
 }
 
