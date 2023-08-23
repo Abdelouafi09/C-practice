@@ -1,23 +1,6 @@
 #include "shell.h"
 
-/**
- *_eputs - prints an input string
- * @str: the string to be printed
- *
- * Return: Nothing
- */
-void _eputs(char *str)
-{
-	int i = 0;
 
-	if (!str)
-		return;
-	while (str[i] != '\0')
-	{
-		_eputchar(str[i]);
-		i++;
-	}
-}
 
 /**
  * _eputchar - writes the character c to stderr
@@ -82,4 +65,23 @@ int _putsfd(char *str, int fd)
 		i += _putfd(*str++, fd);
 	}
 	return (i);
+}
+
+/**
+ *_eputs - prints an input string
+ * @str: the string to be printed
+ *
+ * Return: Nothing
+ */
+void _eputs(char *str)
+{
+	int i = 0;
+
+	if (!str)
+		return;
+	while (str[i] != '\0')
+	{
+		_eputchar(str[i]);
+		i++;
+	}
 }
