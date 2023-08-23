@@ -6,7 +6,7 @@
  * @fd: filedescriptor to write to
  *
  * Return: Always 1.
- * 
+ *
  */
 int put_fd(char c, int fd)
 {
