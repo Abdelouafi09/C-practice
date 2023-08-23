@@ -1,26 +1,43 @@
 #include "shell.h"
 
+
 /**
- * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
- *
- * Return: pointer to destination
+ * _strlen - display length
+ * @s: char to operate on
+ * Return: return an int
  */
-char *_strcpy(char *dest, char *src)
+int _strlen(char *s)
+{
+	int len = 0;
+
+	while (*s != '\0')
+	{
+		len++;
+		s++;
+	}
+	return (len);
+}
+
+/**
+ * _puts - display a string
+ * @str: string to show
+ * Return: none
+ */
+void _puts(char *str)
 {
 	int i = 0;
 
-	if (dest == src || src == 0)
-		return (dest);
-	while (src[i])
+	if (!str)
+		return;
+	while (str[i] != '\0')
 	{
-		dest[i] = src[i];
+		_putchar(str[i]);
 		i++;
 	}
-	dest[i] = 0;
-	return (dest);
 }
+
+
+/*############################*/
 
 /**
  * _strdup - duplicates a string
@@ -45,24 +62,7 @@ char *_strdup(const char *str)
 	return (ret);
 }
 
-/**
- *_puts - prints an input string
- *@str: the string to be printed
- *
- * Return: Nothing
- */
-void _puts(char *str)
-{
-	int i = 0;
 
-	if (!str)
-		return;
-	while (str[i] != '\0')
-	{
-		_putchar(str[i]);
-		i++;
-	}
-}
 
 /**
  * _putchar - writes the character c to stdout

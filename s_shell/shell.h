@@ -79,7 +79,8 @@ typedef struct arg_info
 
 /*string*/
 int _strlen(char *);
-
+void _puts(char *);
+int _strcmp(char *, char *);
 /*############################################################################*/
 
 
@@ -144,14 +145,14 @@ int _putsfd(char *str, int fd);
 
 /* toem_string.c */
 
-int _strcmp(char *, char *);
+
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
 /* toem_string1.c */
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
-void _puts(char *);
+
 int _putchar(char);
 
 /* toem_exits.c */
