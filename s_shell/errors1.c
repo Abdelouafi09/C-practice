@@ -29,6 +29,44 @@ int _erratoi(char *s)
 	return (rslt);
 }
 
+/**
+ * print_dec - function prints a decimal (integer) number (base 10)
+ * @input: the input
+ * @fd: the filedescriptor to write to
+ *
+ * Return: num of chars printed
+ */
+int print_dec(int input, int fd)
+{
+	int (*__putchar)(char) = _putchar;
+	int i, count = 0;
+	unsigned int _abs_, curr;
+
+	if (fd == STDERR_FILENO)
+		__putchar = _errputchar;
+	if (input < 0)
+	{
+		_abs_ = -input;
+		__putchar('-');
+		count++;
+	}
+	else
+		_abs_ = input;
+	curr = _abs_;
+	for (i = 1000000000; i > 1; i /= 10)
+	{
+		if (_abs_ / i)
+		{
+			__putchar('0' + curr / i);
+			count++;
+		}
+		curr %= i;
+	}
+	__putchar('0' + curr);
+	count++;
+
+	return (count);
+}
 
 /**
  * print_err - prints error msg
@@ -40,7 +78,7 @@ void print_err(inf *info, char *estr)
 {
 	_errputs(info->file_name);
 	_errputs(": ");
-	print_d(info->line_count, STDERR_FILENO);
+	print_dec(info->line_count, STDERR_FILENO);
 	_errputs(": ");
 	_errputs(info->argv[0]);
 	_errputs(": ");
@@ -70,44 +108,7 @@ void rmv_cmt(char *buff)
 
 
 
-/**
- * print_d - function prints a decimal (integer) number (base 10)
- * @input: the input
- * @fd: the filedescriptor to write to
- *
- * Return: number of characters printed
- */
-int print_d(int input, int fd)
-{
-	int (*__putchar)(char) = _putchar;
-	int i, count = 0;
-	unsigned int _abs_, current;
 
-	if (fd == STDERR_FILENO)
-		__putchar = _errputchar;
-	if (input < 0)
-	{
-		_abs_ = -input;
-		__putchar('-');
-		count++;
-	}
-	else
-		_abs_ = input;
-	current = _abs_;
-	for (i = 1000000000; i > 1; i /= 10)
-	{
-		if (_abs_ / i)
-		{
-			__putchar('0' + current / i);
-			count++;
-		}
-		current %= i;
-	}
-	__putchar('0' + current);
-	count++;
-
-	return (count);
-}
 
 /**
  * convert_number - converter function, a clone of itoa
