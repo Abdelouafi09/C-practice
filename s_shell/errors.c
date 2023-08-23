@@ -1,6 +1,50 @@
 #include "shell.h"
 
+/**
+ * put_fd - writes char c to fd
+ * @c: char to print
+ * @fd: filedescriptor to write to
+ *
+ * Return: Always 1.
+ * 
+ */
+int put_fd(char c, int fd)
+{
+	static char buf[WR_BUF_SIZE];
+	static int i;
 
+	if (c == BUF_FH || i >= WR_BUF_SIZE)
+	{
+		write(fd, buf, i);
+		i = 0;
+	}
+	if (c != BUF_FH)
+	{
+		buf[i++] = c;
+	}
+
+	return (1);
+}
+
+/**
+ *puts_fd - prints input str
+ * @str: str to print
+ * @fd: filedescriptor to write to
+ *
+ * Return: the number of chars written
+ */
+int puts_fd(char *str, int fd)
+{
+	int i = 0;
+
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		i += put_fd(*str++, fd);
+	}
+	return (i);
+}
 
 /**
  * _errputchar - writes char c to stderr
@@ -42,56 +86,3 @@ void _errputs(char *s)
 		i++;
 	}
 }
-
-
-/**
- * put_fd - writes char c to fd
- * @c: char to print
- * @fd: filedescriptor to write to
- *
- * Return: Always 1.
- * 
- */
-int put_fd(char c, int fd)
-{
-	static char buf[WR_BUF_SIZE];
-	static int i;
-
-	if (c == BUF_FH || i >= WR_BUF_SIZE)
-	{
-		write(fd, buf, i);
-		i = 0;
-	}
-	if (c != BUF_FH)
-	{
-		buf[i++] = c;
-	}
-
-	return (1);
-}
-
-
-/*#######################*/
-
-
-
-/**
- *_putsfd - prints an input string
- * @str: the string to be printed
- * @fd: the filedescriptor to write to
- *
- * Return: the number of chars put
- */
-int _putsfd(char *str, int fd)
-{
-	int i = 0;
-
-	if (!str)
-		return (0);
-	while (*str)
-	{
-		i += put_fd(*str++, fd);
-	}
-	return (i);
-}
-

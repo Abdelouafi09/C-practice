@@ -92,25 +92,15 @@ char *_strcat(char *, char *);
 char *_strdup(const char *);
 
 /*errors handle*/
+int put_fd(char c, int fd);
+int puts_fd(char *str, int fd);
 void _errputs(char *);
 int _errputchar(char c);
 void rmv_cmt(char *buff);
 int _erratoi(char *s);
 void print_err(inf *, char *);
-int put_fd(char c, int fd);
-
 
 /*############################################################################*/
-
-
-/* toem_errors.c */
-
-
-
-int _putsfd(char *str, int fd);
-
-
-
 
 /* toem_errors1.c */
 
