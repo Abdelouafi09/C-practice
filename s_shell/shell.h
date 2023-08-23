@@ -18,6 +18,21 @@
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 
+
+
+/**
+ * struct liststr - singly linked list
+ * @num: the number field
+ * @str: a string
+ * @next: points to the next node
+ */
+typedef struct liststr
+{
+	int num;
+	char *str;
+	struct liststr *next;
+} list_t;
+
 /**
  *struct arg_info - struct to stock pseudo-arguements to use on functions,
  *
@@ -91,23 +106,6 @@ typedef struct arg_info
 #define HIST_MAX	4096
 
 extern char **environ;
-
-
-/**
- * struct liststr - singly linked list
- * @num: the number field
- * @str: a string
- * @next: points to the next node
- */
-typedef struct liststr
-{
-	int num;
-	char *str;
-	struct liststr *next;
-} list_t;
-
-
-
 
 
 /**
