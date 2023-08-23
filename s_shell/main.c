@@ -12,7 +12,10 @@ int main(int ac, char **av)
 	inf info[] = { INF_INIT };
 	int fd = 2;
 
-	ASM(fd);
+	asm ("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r" (fd)
+		: "r" (fd));
 
 	if (ac == 2)
 	{
