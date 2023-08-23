@@ -114,7 +114,7 @@ void find_cmd(inf *info)
 		else if (*(info->arg) != '\n')
 		{
 			info->stat = 127;
-			print_error(info, "not found\n");
+			print_err(info, "not found\n");
 		}
 	}
 }
@@ -154,7 +154,7 @@ void fork_cmd(inf *info)
 		{
 			info->stat = WEXITSTATUS(info->stat);
 			if (info->stat == 126)
-				print_error(info, "Permission denied\n");
+				print_err(info, "Permission denied\n");
 		}
 	}
 }

@@ -94,7 +94,10 @@ char *_strdup(const char *);
 /*errors handle*/
 void _errputs(char *);
 int _errputchar(char c);
-void rmv_cmt(char *);
+void rmv_cmt(char *buff);
+int _erratoi(char *s);
+void print_err(inf *, char *);
+
 /*############################################################################*/
 
 
@@ -108,8 +111,8 @@ int _putsfd(char *str, int fd);
 
 
 /* toem_errors1.c */
-int _erratoi(char *);
-void print_error(inf *, char *);
+
+
 int print_d(int, int);
 char *convert_number(long int, int, int);
 
