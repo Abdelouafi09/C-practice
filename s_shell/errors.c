@@ -14,12 +14,12 @@ int _errputchar(char c)
 	static int i;
 	static char buf[WR_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WR_BUF_SIZE)
+	if (c == BUF_FH || i >= WR_BUF_SIZE)
 	{
 		write(2, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
+	if (c != BUF_FH)
 		buf[i++] = c;
 	return (1);
 }
@@ -56,12 +56,12 @@ int _putfd(char c, int fd)
 	static int i;
 	static char buf[WR_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WR_BUF_SIZE)
+	if (c == BUF_FH || i >= WR_BUF_SIZE)
 	{
 		write(fd, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
+	if (c != BUF_FH)
 		buf[i++] = c;
 	return (1);
 }

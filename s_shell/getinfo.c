@@ -69,6 +69,6 @@ void free_info(inf *info, int all)
 		bfree((void **)info->cmd_buffer);
 		if (info->read_fd > 2)
 			close(info->read_fd);
-		_putchar(BUF_FLUSH);
+		_putchar(BUF_FH);
 	}
 }

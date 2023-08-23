@@ -20,6 +20,8 @@ extern char **environ;
 
 /*RD/WR buffer*/
 #define WR_BUF_SIZE 1024
+#define RD_BUF_SIZE 1024
+#define BUF_FH -1
 /**
  * struct str_list - singly linked list
  * @num: number field
@@ -101,10 +103,8 @@ int _errputchar(char c);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
-/* for read/write buffers */
-#define READ_BUF_SIZE 1024
 
-#define BUF_FLUSH -1
+
 
 /* toem_errors1.c */
 int _erratoi(char *);
