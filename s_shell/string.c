@@ -17,27 +17,34 @@ int _strlen(char *s)
 	return (len);
 }
 
+
 /**
- * _strcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
+ * _strcmp - compare two strings
  *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ * @s1: first string
+ *
+ * @s2: second string
+ *
+ * Return: an integer that segnify the result
  */
 int _strcmp(char *s1, char *s2)
 {
-	while (*s1 && *s2)
+	int len, i, c;
+
+	len = strlen(s1);
+	for (i = 0; i < len && s1[i] != '\0' && s2[i] != '\0'; i++)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+		c = s1[i] - s2[i];
+		if (c == 0)
+			continue;
+		else
+			break;
 	}
-	if (*s1 == *s2)
-		return (0);
-	else
-		return (*s1 < *s2 ? -1 : 1);
+	return (c);
 }
+/*###########################33*/
+
+
 
 /**
  * starts_with - checks if needle starts with haystack
