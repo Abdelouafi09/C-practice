@@ -23,7 +23,7 @@
  *
  *@arg: str arguements
  *@argv: array of str from arg
- *@path: path for the current command
+ *@cmd_path: path for the current command
  *@argc: arg count
  *@line_count: error count
  *@err_num: error index for exit functions
@@ -44,7 +44,7 @@ typedef struct arg_info
 {
 	char *arg;
 	char **argv;
-	char *path;
+	char *cmd_path;
 	int argc;
 	unsigned int line_count;
 	int err_num;

@@ -88,7 +88,7 @@ void find_cmd(inf *info)
 	char *path = NULL;
 	int i, k;
 
-	info->path = info->argv[0];
+	info->cmd_path = info->argv[0];
 	if (info->linecount_flag == 1)
 	{
 		info->line_count++;
@@ -103,7 +103,7 @@ void find_cmd(inf *info)
 	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
 	if (path)
 	{
-		info->path = path;
+		info->cmd_path = path;
 		fork_cmd(info);
 	}
 	else
@@ -138,7 +138,7 @@ void fork_cmd(inf *info)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(info->path, info->argv, get_environ(info)) == -1)
+		if (execve(info->cmd_path, info->argv, get_environ(info)) == -1)
 		{
 			free_info(info, 1);
 			if (errno == EACCES)
