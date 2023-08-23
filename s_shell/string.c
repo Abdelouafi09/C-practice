@@ -42,6 +42,52 @@ char *starts_with(const char *haystack, const char *needle)
 			return (NULL);
 	return ((char *)haystack);
 }
+
+/**
+ * _strdup - duplicates string
+ * @str: string to duplicate
+ *
+ * Return: pointer to the duplicated str
+ */
+char *_strdup(const char *str)
+{
+	int len = 0;
+	char *ptr;
+
+	if (str == NULL)
+		return (NULL);
+	while (*str++)
+		len++;
+	ptr = malloc(sizeof(char) * (len + 1));
+	if (!ptr)
+		return (NULL);
+	for (len++; len--;)
+		ptr[len] = *--str;
+	return (ptr);
+}
+
+
+/**
+ * _strcat - concatinate string
+ * @dest: string to add to
+ * @src: string to add
+ * Return: return dest string containe both strings
+ *
+ */
+char *_strcat(char *dest, char *src)
+{
+	int len1, len2, i;
+
+	len1 = strlen(dest);
+	len2 = strlen(src);
+	for (i = 0; i < len2 && *src != '\0'; i++)
+	{
+		dest[len1 + i] = src[i];
+	}
+	dest[len1 + len2] = '\0';
+	return (dest);
+}
+
 /*###########################33*/
 
 
@@ -65,24 +111,4 @@ char *_strcpy(char *dest, char *src)
 	}
 	dest[i] = 0;
 	return (dest);
-}
-
-
-/**
- * _strcat - concatenates two strings
- * @dest: the destination buffer
- * @src: the source buffer
- *
- * Return: pointer to destination buffer
- */
-char *_strcat(char *dest, char *src)
-{
-	char *ret = dest;
-
-	while (*dest)
-		dest++;
-	while (*src)
-		*dest++ = *src++;
-	*dest = *src;
-	return (ret);
 }
