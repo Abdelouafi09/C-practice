@@ -18,8 +18,8 @@ extern char **environ;
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 
-
-
+/*RD/WR buffer*/
+#define WR_BUF_SIZE 1024
 /**
  * struct str_list - singly linked list
  * @num: number field
@@ -90,7 +90,7 @@ char *_strdup(const char *);
 
 /*errors handle*/
 void _errputs(char *);
-int _errputchar(char);
+int _errputchar(char c);
 
 /*############################################################################*/
 
@@ -101,7 +101,10 @@ int _errputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
+/* for read/write buffers */
+#define READ_BUF_SIZE 1024
 
+#define BUF_FLUSH -1
 
 /* toem_errors1.c */
 int _erratoi(char *);
@@ -110,10 +113,7 @@ int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-/* for read/write buffers */
-#define READ_BUF_SIZE 1024
-#define WRITE_BUF_SIZE 1024
-#define BUF_FLUSH -1
+
 
 /* for command chaining */
 #define CMD_NORM	0

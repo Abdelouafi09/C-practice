@@ -12,9 +12,9 @@
 int _errputchar(char c)
 {
 	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static char buf[WR_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || i >= WR_BUF_SIZE)
 	{
 		write(2, buf, i);
 		i = 0;
@@ -24,20 +24,20 @@ int _errputchar(char c)
 	return (1);
 }
 /**
- *_errputs - prints an input string
- * @str: the string to be printed
+ *_errputs - wrrites str to sderr
+ * @s: str to print
  *
- * Return: Nothing
+ * Return: none
  */
-void _errputs(char *str)
+void _errputs(char *s)
 {
 	int i = 0;
 
-	if (!str)
+	if (!s)
 		return;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
-		_errputchar(str[i]);
+		_errputchar(s[i]);
 		i++;
 	}
 }
@@ -54,9 +54,9 @@ void _errputs(char *str)
 int _putfd(char c, int fd)
 {
 	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static char buf[WR_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || i >= WR_BUF_SIZE)
 	{
 		write(fd, buf, i);
 		i = 0;
