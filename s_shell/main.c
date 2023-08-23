@@ -9,7 +9,7 @@
  */
 int main(int ac, char **av)
 {
-	inf info[] = { INF_INIT };
+	inf arg_struct[] = { INF_INIT };
 	int fd = 2;
 
 	asm ("mov %1, %0\n\t"
@@ -35,10 +35,10 @@ int main(int ac, char **av)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->read_fd = fd;
+		arg_struct->read_fd = fd;
 	}
-	populate_env_list(info);
-	read_history(info);
-	hsh(info, av);
+	populate_env_list(arg_struct);
+	read_history(arg_struct);
+	hsh(arg_struct, av);
 	return (EXIT_SUCCESS);
 }
