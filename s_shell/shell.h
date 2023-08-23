@@ -50,10 +50,10 @@ typedef struct liststr
  *@mod_environ: custom modified copy of environ from LL env
  *@env_mod: environ changed
  *@stat: the return status of the last exec'd command
- *@cmd_buf: pointer to cmd_buf
- *@cmd_buf_type: CMD_type ;, &&,||
- *@readfd: read line input's fd
- *@histcount: history count
+ *@cmd_buffer: pointer to cmd_buffer
+ *@cmd_buffer_type: CMD_type (;, &&,||)
+ *@read_fd: read line input's fd
+ *@hist_count: history count
  */
 typedef struct arg_info
 {
@@ -71,10 +71,10 @@ typedef struct arg_info
 	char **mod_environ;
 	int env_mod;
 	int stat;
-	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
-	int cmd_buf_type; /* CMD_type ||, &&, ; */
-	int readfd;
-	int histcount;
+	char **cmd_buffer; /* pointer to cmd ; chain buffer, for memory mangement */
+	int cmd_buffer_type; /* CMD_type ||, &&, ; */
+	int read_fd;
+	int hist_count;
 } inf;
 
 

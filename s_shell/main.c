@@ -35,7 +35,7 @@ int main(int ac, char **av)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = fd;
+		info->read_fd = fd;
 	}
 	populate_env_list(info);
 	read_history(info);

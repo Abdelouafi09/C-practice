@@ -33,11 +33,11 @@ ssize_t input_buf(inf *info, char **buf, size_t *len)
 			}
 			info->line_count_flag = 1;
 			remove_comments(*buf);
-			build_history_list(info, *buf, info->histcount++);
+			build_history_list(info, *buf, info->hist_count++);
 			/* if (_strchr(*buf, ';')) is this a command chain? */
 			{
 				*len = r;
-				info->cmd_buf = buf;
+				info->cmd_buffer = buf;
 			}
 		}
 	}
@@ -78,7 +78,7 @@ ssize_t get_input(inf *info)
 		if (i >= len) /* reached end of buffer? */
 		{
 			i = len = 0; /* reset position and length */
-			info->cmd_buf_type = CMD_NORM;
+			info->cmd_buffer_type = CMD_NORM;
 		}
 
 		*buf_p = p; /* pass back pointer to current command position */
@@ -103,7 +103,7 @@ ssize_t read_buf(inf *info, char *buf, size_t *i)
 
 	if (*i)
 		return (0);
-	r = read(info->readfd, buf, READ_BUF_SIZE);
+	r = read(info->read_fd, buf, READ_BUF_SIZE);
 	if (r >= 0)
 		*i = r;
 	return (r);

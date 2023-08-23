@@ -56,7 +56,7 @@ void free_info(inf *info, int all)
 	info->cmd_path = NULL;
 	if (all)
 	{
-		if (!info->cmd_buf)
+		if (!info->cmd_buffer)
 			free(info->arg);
 		if (info->env)
 			free_list(&(info->env));
@@ -66,9 +66,9 @@ void free_info(inf *info, int all)
 			free_list(&(info->alias));
 		ffree(info->mod_environ);
 			info->mod_environ = NULL;
-		bfree((void **)info->cmd_buf);
-		if (info->readfd > 2)
-			close(info->readfd);
+		bfree((void **)info->cmd_buffer);
+		if (info->read_fd > 2)
+			close(info->read_fd);
 		_putchar(BUF_FLUSH);
 	}
 }
