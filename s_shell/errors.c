@@ -3,13 +3,13 @@
 
 
 /**
- * _eputchar - writes the character c to stderr
- * @c: The character to print
+ * _errputchar - writes char c to stderr
+ * @c: char to print
  *
- * Return: On success 1.
+ * Return: success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _eputchar(char c)
+int _errputchar(char c)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
@@ -23,7 +23,26 @@ int _eputchar(char c)
 		buf[i++] = c;
 	return (1);
 }
+/**
+ *_errputs - prints an input string
+ * @str: the string to be printed
+ *
+ * Return: Nothing
+ */
+void _errputs(char *str)
+{
+	int i = 0;
 
+	if (!str)
+		return;
+	while (str[i] != '\0')
+	{
+		_errputchar(str[i]);
+		i++;
+	}
+}
+
+/*#######################*/
 /**
  * _putfd - writes the character c to given fd
  * @c: The character to print
@@ -67,21 +86,3 @@ int _putsfd(char *str, int fd)
 	return (i);
 }
 
-/**
- *_eputs - prints an input string
- * @str: the string to be printed
- *
- * Return: Nothing
- */
-void _eputs(char *str)
-{
-	int i = 0;
-
-	if (!str)
-		return;
-	while (str[i] != '\0')
-	{
-		_eputchar(str[i]);
-		i++;
-	}
-}

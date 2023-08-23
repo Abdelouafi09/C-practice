@@ -79,12 +79,36 @@ typedef struct arg_info
 
 /*string*/
 int _strlen(char *);
+int _putchar(char);
 void _puts(char *);
+char *_strcpy(char *, char *);
+
 int _strcmp(char *, char *);
+char *starts_with(const char *, const char *);
+char *_strcat(char *, char *);
+char *_strdup(const char *);
+
+/*errors handle*/
+void _errputs(char *);
+int _errputchar(char);
+
 /*############################################################################*/
 
 
+/* toem_errors.c */
 
+
+int _putfd(char c, int fd);
+int _putsfd(char *str, int fd);
+
+
+
+/* toem_errors1.c */
+int _erratoi(char *);
+void print_error(inf *, char *);
+int print_d(int, int);
+char *convert_number(long int, int, int);
+void remove_comments(char *);
 
 /* for read/write buffers */
 #define READ_BUF_SIZE 1024
@@ -137,23 +161,7 @@ char *find_path(inf *, char *, char *);
 /* loophsh.c */
 int loophsh(char **);
 
-/* toem_errors.c */
-void _eputs(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
 
-/* toem_string.c */
-
-
-char *starts_with(const char *, const char *);
-char *_strcat(char *, char *);
-
-/* toem_string1.c */
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
-
-int _putchar(char);
 
 /* toem_exits.c */
 char *_strncpy(char *, char *, int);
@@ -178,12 +186,7 @@ int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
-/* toem_errors1.c */
-int _erratoi(char *);
-void print_error(inf *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+
 
 /* toem_builtin.c */
 int _myexit(inf *);
