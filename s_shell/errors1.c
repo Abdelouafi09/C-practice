@@ -1,5 +1,25 @@
 #include "shell.h"
 
+
+/**
+ * rmv_cmt - first '#' ==> '\0'
+ * @buff: addrss of str to modify
+ * Return: Always 0;
+ */
+void rmv_cmt(char *buff)
+{
+	int i;
+
+	for (i = 0; buff[i] != '\0'; i++)
+		if (buff[i] == '#' && (!i || buff[i - 1] == ' '))
+		{
+			buff[i] = '\0';
+			break;
+		}
+}
+
+
+/*##########################*/
 /**
  * _erratoi - converts a string to an integer
  * @s: the string to be converted
@@ -121,20 +141,4 @@ char *convert_number(long int num, int base, int flags)
 	return (ptr);
 }
 
-/**
- * remove_comments - function replaces first instance of '#' with '\0'
- * @buf: address of the string to modify
- *
- * Return: Always 0;
- */
-void remove_comments(char *buf)
-{
-	int i;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
-		{
-			buf[i] = '\0';
-			break;
-		}
-}

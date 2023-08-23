@@ -12,17 +12,18 @@
 int _errputchar(char c)
 {
 	static int i;
-	static char buf[WR_BUF_SIZE];
+	static char b[WR_BUF_SIZE];
 
 	if (c == BUF_FH || i >= WR_BUF_SIZE)
 	{
-		write(2, buf, i);
+		write(2, b, i);
 		i = 0;
 	}
 	if (c != BUF_FH)
-		buf[i++] = c;
+		b[i++] = c;
 	return (1);
 }
+
 /**
  *_errputs - wrrites str to sderr
  * @s: str to print
@@ -43,6 +44,7 @@ void _errputs(char *s)
 }
 
 /*#######################*/
+
 /**
  * _putfd - writes the character c to given fd
  * @c: The character to print

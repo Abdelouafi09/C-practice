@@ -22,6 +22,7 @@ extern char **environ;
 #define WR_BUF_SIZE 1024
 #define RD_BUF_SIZE 1024
 #define BUF_FH -1
+
 /**
  * struct str_list - singly linked list
  * @num: number field
@@ -93,7 +94,7 @@ char *_strdup(const char *);
 /*errors handle*/
 void _errputs(char *);
 int _errputchar(char c);
-
+void rmv_cmt(char *);
 /*############################################################################*/
 
 
@@ -111,7 +112,7 @@ int _erratoi(char *);
 void print_error(inf *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
-void remove_comments(char *);
+
 
 
 
@@ -160,8 +161,6 @@ char *find_path(inf *, char *, char *);
 
 /* loophsh.c */
 int loophsh(char **);
-
-
 
 /* toem_exits.c */
 char *_strncpy(char *, char *, int);
