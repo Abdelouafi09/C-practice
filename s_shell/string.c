@@ -87,8 +87,3 @@ char *_strcat(char *dest, char *src)
 	dest[len1 + len2] = '\0';
 	return (dest);
 }
-
-
-/*###########################33*/
-
-
