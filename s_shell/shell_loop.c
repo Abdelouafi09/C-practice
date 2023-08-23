@@ -32,12 +32,12 @@ int hsh(inf *info, char **av)
 	}
 	write_history(info);
 	free_info(info, 1);
-	if (!interactive(info) && info->status)
-		exit(info->status);
+	if (!interactive(info) && info->stat)
+		exit(info->stat);
 	if (builtin_ret == -2)
 	{
 		if (info->err_int == -1)
-			exit(info->status);
+			exit(info->stat);
 		exit(info->err_int);
 	}
 	return (builtin_ret);
@@ -113,7 +113,7 @@ void find_cmd(inf *info)
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
-			info->status = 127;
+			info->stat = 127;
 			print_error(info, "not found\n");
 		}
 	}
@@ -149,11 +149,11 @@ void fork_cmd(inf *info)
 	}
 	else
 	{
-		wait(&(info->status));
-		if (WIFEXITED(info->status))
+		wait(&(info->stat));
+		if (WIFEXITED(info->stat))
 		{
-			info->status = WEXITSTATUS(info->status);
-			if (info->status == 126)
+			info->stat = WEXITSTATUS(info->stat);
+			if (info->stat == 126)
 				print_error(info, "Permission denied\n");
 		}
 	}

@@ -48,8 +48,8 @@ typedef struct liststr
  *@history: history node
  *@alias: alias node
  *@mod_environ: custom modified copy of environ from LL env
- *@env_changed: environ changed
- *@status: the return status of the last exec'd command
+ *@env_mod: environ changed
+ *@stat: the return status of the last exec'd command
  *@cmd_buf: pointer to cmd_buf
  *@cmd_buf_type: CMD_type ;, &&,||
  *@readfd: read line input's fd
@@ -69,8 +69,8 @@ typedef struct arg_info
 	list_t *history;
 	list_t *alias;
 	char **mod_environ;
-	int env_changed;
-	int status;
+	int env_mod;
+	int stat;
 	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
 	int readfd;
