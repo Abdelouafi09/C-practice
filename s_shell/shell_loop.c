@@ -63,7 +63,7 @@ void cmd_find(inf *info)
 	else
 	{
 		if ((interactive(info) || _getenv(info, "PATH=")
-			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+			|| info->argv[0][0] == '/') && is_command(info, info->argv[0]))
 			cmd_fork(info);
 		else if (*(info->arg) != '\n')
 		{

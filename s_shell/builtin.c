@@ -10,7 +10,7 @@ int _myhelp(inf *info)
 	char **arg_arr;
 
 	arg_arr = info->argv;
-	_puts("help call works. Function not yet implemented \n");
+	_puts("help call works, (not yet implemented) \n");
 	if (0)
 		_puts(*arg_arr); /* temp att_unused workaround */
 	return (0);

@@ -159,14 +159,16 @@ int _myexit(inf *);
 int _mycd(inf *);
 int _myhelp(inf *);
 
+/* parser */
+int is_command(inf *, char *);
+char *find_path(inf *, char *, char *);
+char *dupchars(char *, int, int);
+
 
 /*############################################################################*/
 
 
-/* toem_parser.c */
-int is_cmd(inf *, char *);
-char *dup_chars(char *, int, int);
-char *find_path(inf *, char *, char *);
+
 
 /* loophsh.c */
 int loophsh(char **);
