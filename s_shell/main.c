@@ -37,7 +37,7 @@ int main(int ac, char **av)
 		}
 		arg_struct->read_fd = fd;
 	}
-	populate_env_list(arg_struct);
+	fill_env_list(arg_struct);
 	read_history(arg_struct);
 	h_sh(arg_struct, av);
 	return (EXIT_SUCCESS);

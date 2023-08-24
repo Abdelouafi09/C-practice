@@ -1,47 +1,40 @@
 #include "shell.h"
 
 /**
- * _myenv - prints the current environment
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * fill_env_list - fills env linked_list
+ * @info: Struct inf
  * Return: Always 0
  */
-int _myenv(inf *info)
+int fill_env_list(inf *info)
+{
+	list_t *list_node = NULL;
+	size_t i;
+
+	for (i = 0; environ[i]; i++)
+		add_node_end(&list_node, environ[i], 0);
+	info->env = list_node;
+	return (0);
+}
+
+
+/**
+ * _env - prints curr env
+ * @info: Struct inf
+ * Return: Always 0
+ */
+int _env(inf *info)
 {
 	print_list_str(info->env);
 	return (0);
 }
 
 /**
- * _getenv - gets the value of an environ variable
- * @info: Structure containing potential arguments. Used to maintain
- * @name: env var name
- *
- * Return: the value
- */
-char *_getenv(inf *info, const char *name)
-{
-	list_t *node = info->env;
-	char *p;
-
-	while (node)
-	{
-		p = starts_with(node->str, name);
-		if (p && *p)
-			return (p);
-		node = node->next;
-	}
-	return (NULL);
-}
-
-/**
- * _mysetenv - Initialize a new environment variable,
- *             or modify an existing one
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * _setenv - Initi new env variable,
+ *             or modify existing one
+ * @info: Struct inf
  *  Return: Always 0
  */
-int _mysetenv(inf *info)
+int _setenv(inf *info)
 {
 	if (info->argc != 3)
 	{
@@ -54,12 +47,11 @@ int _mysetenv(inf *info)
 }
 
 /**
- * _myunsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * _unsetenv - Remove an env var
+ * @info: Struct inf
  *  Return: Always 0
  */
-int _myunsetenv(inf *info)
+int _unsetenv(inf *info)
 {
 	int i;
 
@@ -75,18 +67,23 @@ int _myunsetenv(inf *info)
 }
 
 /**
- * populate_env_list - populates env linked list
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- * Return: Always 0
+ * _getenv - gets the value of an environ variable
+ * @info: Struct inf
+ * @name: env var name
+ *
+ * Return: env value if exist, NULL if not
  */
-int populate_env_list(inf *info)
+char *_getenv(inf *info, const char *name)
 {
-	list_t *node = NULL;
-	size_t i;
+	list_t *list_node = info->env;
+	char *ptr;
 
-	for (i = 0; environ[i]; i++)
-		add_node_end(&node, environ[i], 0);
-	info->env = node;
-	return (0);
+	while (list_node)
+	{
+		ptr = starts_with(list_node->str, name);
+		if (ptr && *ptr)
+			return (ptr);
+		list_node = list_node->next;
+	}
+	return (NULL);
 }

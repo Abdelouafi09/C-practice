@@ -135,6 +135,11 @@ int _erratoi(char *s);
 void print_err(inf *, char *);
 char *cnvrt_num(long int, int, int);
 
+/* exits */
+char *_strchr(char *, char);
+char *_strncat(char *, char *, int);
+char *_strncpy(char *, char *, int);
+
 /*shell loop*/
 int h_sh(inf *, char **);
 void clear_info(inf *);
@@ -142,6 +147,12 @@ int find_bltin(inf *);
 void cmd_find(inf *);
 void cmd_fork(inf *);
 
+/* toem_environ.c */
+char *_getenv(inf *, const char *);
+int _unsetenv(inf *);
+int _setenv(inf *);
+int _env(inf *);
+int fill_env_list(inf *);
 
 /*############################################################################*/
 
@@ -154,10 +165,7 @@ char *find_path(inf *, char *, char *);
 /* loophsh.c */
 int loophsh(char **);
 
-/* toem_exits.c */
-char *_strncpy(char *, char *, int);
-char *_strncat(char *, char *, int);
-char *_strchr(char *, char);
+
 
 /* toem_tokenizer.c */
 char **strtow(char *, char *);
@@ -198,12 +206,7 @@ void sigintHandler(int);
 void set_info(inf *, char **);
 void free_info(inf *, int);
 
-/* toem_environ.c */
-char *_getenv(inf *, const char *);
-int _myenv(inf *);
-int _mysetenv(inf *);
-int _myunsetenv(inf *);
-int populate_env_list(inf *);
+
 
 /* toem_getenv.c */
 char **get_environ(inf *);

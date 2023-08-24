@@ -11,11 +11,11 @@ int find_bltin(inf *info)
 	int i, bltin_index = -1;
 	bltin_t bltin_tab[] = {
 		{"exit", _myexit},
-		{"env", _myenv},
+		{"env", _env},
 		{"help", _myhelp},
 		{"history", _myhistory},
-		{"setenv", _mysetenv},
-		{"unsetenv", _myunsetenv},
+		{"setenv", _setenv},
+		{"unsetenv", _unsetenv},
 		{"cd", _mycd},
 		{"alias", _myalias},
 		{NULL, NULL}
