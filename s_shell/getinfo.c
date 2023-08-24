@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * clear_info - initializes inf struct
- * @info: struct address
+ * clear_info - init inf struct
+ * @info: struct addrss
  */
 void clear_info(inf *info)
 {
@@ -11,6 +11,8 @@ void clear_info(inf *info)
 	info->cmd_path = NULL;
 	info->argc = 0;
 }
+
+/*############################*/
 
 /**
  * set_info - initializes inf struct

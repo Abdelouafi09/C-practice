@@ -39,6 +39,6 @@ int main(int ac, char **av)
 	}
 	populate_env_list(arg_struct);
 	read_history(arg_struct);
-	hsh(arg_struct, av);
+	h_sh(arg_struct, av);
 	return (EXIT_SUCCESS);
 }

@@ -32,61 +32,13 @@ int find_bltin(inf *info)
 	return (bltin_index);
 }
 
-/*#############################*/
-
 
 /**
- * hsh - main shell loop
- * @info: the parameter & return info struct
- * @av: the argument vector from main()
+ * cmd_find - finds a cmd in PATH
+ * @info: info struct
  *
- * Return: 0 on success, 1 on error, or error code
  */
-int hsh(inf *info, char **av)
-{
-	ssize_t r = 0;
-	int builtin_ret = 0;
-
-	while (r != -1 && builtin_ret != -2)
-	{
-		clear_info(info);
-		if (interactive(info))
-			_puts("$ ");
-		_errputchar(BUF_FH);
-		r = get_input(info);
-		if (r != -1)
-		{
-			set_info(info, av);
-			builtin_ret = find_bltin(info);
-			if (builtin_ret == -1)
-				find_cmd(info);
-		}
-		else if (interactive(info))
-			_putchar('\n');
-		free_info(info, 0);
-	}
-	write_history(info);
-	free_info(info, 1);
-	if (!interactive(info) && info->stat)
-		exit(info->stat);
-	if (builtin_ret == -2)
-	{
-		if (info->err_int == -1)
-			exit(info->stat);
-		exit(info->err_int);
-	}
-	return (builtin_ret);
-}
-
-
-
-/**
- * find_cmd - finds a command in PATH
- * @info: the parameter & return info struct
- *
- * Return: void
- */
-void find_cmd(inf *info)
+void cmd_find(inf *info)
 {
 	char *path = NULL;
 	int i, k;
@@ -121,6 +73,55 @@ void find_cmd(inf *info)
 		}
 	}
 }
+
+/*#############################*/
+
+
+/**
+ * h_sh - shell loop
+ * @info: info struct
+ * @av: av from main()
+ *
+ * Return: 0 on success, 1 on error, or error code
+ */
+int h_sh(inf *info, char **av)
+{
+	ssize_t r = 0;
+	int builtin_ret = 0;
+
+	while (r != -1 && builtin_ret != -2)
+	{
+		clear_info(info);
+		if (interactive(info))
+			_puts("$ ");
+		_errputchar(BUF_FH);
+		r = get_input(info);
+		if (r != -1)
+		{
+			set_info(info, av);
+			builtin_ret = find_bltin(info);
+			if (builtin_ret == -1)
+				cmd_find(info);
+		}
+		else if (interactive(info))
+			_putchar('\n');
+		free_info(info, 0);
+	}
+	write_history(info);
+	free_info(info, 1);
+	if (!interactive(info) && info->stat)
+		exit(info->stat);
+	if (builtin_ret == -2)
+	{
+		if (info->err_int == -1)
+			exit(info->stat);
+		exit(info->err_int);
+	}
+	return (builtin_ret);
+}
+
+
+
 
 /**
  * fork_cmd - forks a an exec thread to run cmd

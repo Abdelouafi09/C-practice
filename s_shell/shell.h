@@ -135,18 +135,20 @@ int _erratoi(char *s);
 void print_err(inf *, char *);
 char *cnvrt_num(long int, int, int);
 
-
-
-
+/*shell loop*/
+int h_sh(inf *, char **);
+void clear_info(inf *);
+int find_bltin(inf *);
+void cmd_find(inf *);
 /*############################################################################*/
 
 
 
 
 /* toem_shloop.c */
-int hsh(inf *, char **);
-int find_builtin(inf *);
-void find_cmd(inf *);
+
+
+
 void fork_cmd(inf *);
 
 /* toem_parser.c */
@@ -197,7 +199,7 @@ int _getline(inf *, char **, size_t *);
 void sigintHandler(int);
 
 /* toem_getinfo.c */
-void clear_info(inf *);
+
 void set_info(inf *, char **);
 void free_info(inf *, int);
 
