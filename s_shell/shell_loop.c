@@ -1,6 +1,5 @@
 #include "shell.h"
 
-
 /**
  * find_bltin - finds a builtin cmd
  * @info: info struct
@@ -59,13 +58,13 @@ void cmd_find(inf *info)
 	if (path)
 	{
 		info->cmd_path = path;
-		fork_cmd(info);
+		cmd_fork(info);
 	}
 	else
 	{
 		if ((interactive(info) || _getenv(info, "PATH=")
 			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
-			fork_cmd(info);
+			cmd_fork(info);
 		else if (*(info->arg) != '\n')
 		{
 			info->stat = 127;
@@ -73,8 +72,6 @@ void cmd_find(inf *info)
 		}
 	}
 }
-
-/*#############################*/
 
 
 /**
@@ -87,9 +84,9 @@ void cmd_find(inf *info)
 int h_sh(inf *info, char **av)
 {
 	ssize_t r = 0;
-	int builtin_ret = 0;
+	int bltin_ret = 0;
 
-	while (r != -1 && builtin_ret != -2)
+	while (r != -1 && bltin_ret != -2)
 	{
 		clear_info(info);
 		if (interactive(info))
@@ -99,8 +96,8 @@ int h_sh(inf *info, char **av)
 		if (r != -1)
 		{
 			set_info(info, av);
-			builtin_ret = find_bltin(info);
-			if (builtin_ret == -1)
+			bltin_ret = find_bltin(info);
+			if (bltin_ret == -1)
 				cmd_find(info);
 		}
 		else if (interactive(info))
@@ -111,32 +108,28 @@ int h_sh(inf *info, char **av)
 	free_info(info, 1);
 	if (!interactive(info) && info->stat)
 		exit(info->stat);
-	if (builtin_ret == -2)
+	if (bltin_ret == -2)
 	{
 		if (info->err_int == -1)
 			exit(info->stat);
 		exit(info->err_int);
 	}
-	return (builtin_ret);
+	return (bltin_ret);
 }
 
 
-
-
 /**
- * fork_cmd - forks a an exec thread to run cmd
- * @info: the parameter & return info struct
+ * cmd_fork - fork exec thread to run cmd
+ * @info: info struct
  *
- * Return: void
  */
-void fork_cmd(inf *info)
+void cmd_fork(inf *info)
 {
 	pid_t child_pid;
 
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		/* TODO: PUT ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}
@@ -149,7 +142,6 @@ void fork_cmd(inf *info)
 				exit(126);
 			exit(1);
 		}
-		/* TODO: PUT ERROR FUNCTION */
 	}
 	else
 	{

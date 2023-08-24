@@ -140,16 +140,11 @@ int h_sh(inf *, char **);
 void clear_info(inf *);
 int find_bltin(inf *);
 void cmd_find(inf *);
+void cmd_fork(inf *);
+
+
 /*############################################################################*/
 
-
-
-
-/* toem_shloop.c */
-
-
-
-void fork_cmd(inf *);
 
 /* toem_parser.c */
 int is_cmd(inf *, char *);
