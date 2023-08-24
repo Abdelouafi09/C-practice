@@ -29,12 +29,12 @@ int _env(inf *info)
 }
 
 /**
- * _setenv - Initi new env variable,
+ * _mysetenv - Initi new env variable,
  *             or modify existing one
  * @info: Struct inf
  *  Return: Always 0
  */
-int _setenv(inf *info)
+int _mysetenv(inf *info)
 {
 	if (info->argc != 3)
 	{
@@ -47,11 +47,11 @@ int _setenv(inf *info)
 }
 
 /**
- * _unsetenv - Remove an env var
+ * _myunsetenv - Remove an env var
  * @info: Struct inf
  *  Return: Always 0
  */
-int _unsetenv(inf *info)
+int _myunsetenv(inf *info)
 {
 	int i;
 

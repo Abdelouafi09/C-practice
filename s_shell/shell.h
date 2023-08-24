@@ -149,10 +149,11 @@ void cmd_fork(inf *);
 
 /* toem_environ.c */
 char *_getenv(inf *, const char *);
-int _unsetenv(inf *);
-int _setenv(inf *);
+int _mysetenv(inf *);
+int _myunsetenv(inf *);
 int _env(inf *);
 int fill_env_list(inf *);
+
 
 /*############################################################################*/
 
@@ -205,8 +206,6 @@ void sigintHandler(int);
 
 void set_info(inf *, char **);
 void free_info(inf *, int);
-
-
 
 /* toem_getenv.c */
 char **get_environ(inf *);

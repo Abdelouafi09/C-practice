@@ -14,8 +14,8 @@ int find_bltin(inf *info)
 		{"env", _env},
 		{"help", _myhelp},
 		{"history", _myhistory},
-		{"setenv", _setenv},
-		{"unsetenv", _unsetenv},
+		{"setenv", _mysetenv},
+		{"unsetenv", _myunsetenv},
 		{"cd", _mycd},
 		{"alias", _myalias},
 		{NULL, NULL}
