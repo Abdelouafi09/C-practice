@@ -154,6 +154,11 @@ int _myunsetenv(inf *);
 int _env(inf *);
 int fill_env_list(inf *);
 
+/* builtin */
+int _myexit(inf *);
+int _mycd(inf *);
+int _myhelp(inf *);
+
 
 /*############################################################################*/
 
@@ -186,12 +191,6 @@ int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
-
-
-/* toem_builtin.c */
-int _myexit(inf *);
-int _mycd(inf *);
-int _myhelp(inf *);
 
 /* toem_builtin1.c */
 int _myhistory(inf *);
